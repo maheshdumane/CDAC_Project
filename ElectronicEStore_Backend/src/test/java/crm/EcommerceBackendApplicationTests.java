@@ -1,10 +1,10 @@
-package com.example.demo;
+package crm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ElectronicEStoreBackendApplicationTests {
+class EcommerceBackendApplicationTests {
 
 	@Test
 	void contextLoads() {
