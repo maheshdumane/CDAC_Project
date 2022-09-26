@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import loginvalidation from "../loginvalidation"
 
 function CustomerLogin(){
+    const  validcaptcha=false;
 
     const dispatch=useDispatch()
 
@@ -12,23 +13,64 @@ function CustomerLogin(){
         "userid":"",
         "pwd":""
     })
+    const [captcha,setCaptcha]=useState({
+        "capt":"",
+        "textinput":""
+    })
+
     const [errors,setErrors]=useState({})
     const [submitted,setSubmitted]=useState(false)
     const history=useHistory()
 
     const handleInput=(e)=>{
         setUser({...user,[e.target.name]:e.target.value})
+        setCaptcha({...captcha,[e.target.name]:e.target.value})
     }
 
     const handleSubmit=e=>{
+        validcap();
         e.preventDefault()
         setErrors(loginvalidation(user))   
         setSubmitted(true) 
     }
+    
+    function validcap(){
+                    var stg1 = captcha.capt;
+                    var stg2 = captcha.textinput;
+                    if(stg1==stg2){
+                      validcaptcha=true;
+                      return true;
+                    }else{
+                      alert("Please enter a valid captcha");
+                      validcaptcha=false;
+                      return false;
+                    }
+                   }
+
+    function cap(){
+        
+        var alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V'
+        ,'W','X','Y','Z','1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i',
+        'j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        var a = alpha[Math.floor(Math.random()*62)];
+        var b = alpha[Math.floor(Math.random()*62)];
+        var c = alpha[Math.floor(Math.random()*62)];
+        var d = alpha[Math.floor(Math.random()*62)];
+        var e = alpha[Math.floor(Math.random()*62)];
+        var f = alpha[Math.floor(Math.random()*62)];
+
+        var final = a+b+c+d+e+f;
+        console.log("this is captcha string in use effect "+final);
+        captcha.capt=final; 
+    }
+
+    useEffect(()=>{
+        cap();
+    },[""])
 
     useEffect(()=>{
         console.log(errors)
-        if(Object.keys(errors).length===0 && submitted){
+        if(Object.keys(errors).length===0 && submitted && validcaptcha){
             console.log(user)
             axios.post("http://localhost:9090/api/customers/validate",user)
             .then(resp=>{
@@ -50,7 +92,11 @@ function CustomerLogin(){
 
 
     return (
+        
     <div className="container">
+        <script>
+            
+        </script>
     <div className="card shadow bg-dark mt-3 text-white">
         <div className="card-body">            
             <div className="row">
@@ -58,7 +104,7 @@ function CustomerLogin(){
                     <h4 className="text-center p-2">
                         Customer Login Form
                     </h4>
-                    <form onSubmit={handleSubmit}>                 
+                    <form onSubmit={handleSubmit} onLoad={cap}>                 
                     <div className="form-group form-row">
                         <label className="col-sm-4 form-control-label">Email Id</label>
                         <div className="col-sm-8">
@@ -73,7 +119,16 @@ function CustomerLogin(){
                             <input type="password" name="pwd" value={user.pwd} onChange={handleInput} className="form-control" />
                             {errors.pwd && <small className="text-danger float-right">{errors.pwd}</small>}
                         </div>
-                    </div>                    
+                    </div> 
+                    <label>Enter Captcha:</label>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                        <input type="text" className="form-control"  name="capt" value={captcha.capt} readOnly></input>
+                        </div>
+                        <div className="form-group col-md-6">
+                        <input type="text" className="form-control" name="textinput" onChange={handleInput}></input>
+                        </div>
+                    </div>              
                     <button className="btn btn-primary float-right">Login Now</button>
                     </form>
                 </div>
