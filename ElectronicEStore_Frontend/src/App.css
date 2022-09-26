@@ -71,3 +71,11 @@
   .pagination__link--disabled:hover a {
     background-color: gray;
   }
+
+  #captcha{
+    text-align: center;
+    font-size: larger;
+    text-shadow: 2px;
+    text-decoration: line-through;
+    background-color: burlywood;
+  }

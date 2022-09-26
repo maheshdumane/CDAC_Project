@@ -113,9 +113,9 @@ function SellerLogin(){
                         </div>
                     </div>   
                     <label>Enter Captcha:</label>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                        <input type="text" className="form-control"  name="capt" value={captcha.capt} readOnly></input>
+                    <div className="form-row" >
+                        <div className="form-group col-md-6" >
+                        <input type="text" className="form-control" id="captcha" name="capt" value={captcha.capt} readOnly ></input>
                         </div>
                         <div className="form-group col-md-6">
                         <input type="text" className="form-control" name="textinput" onChange={handleInput}></input>
