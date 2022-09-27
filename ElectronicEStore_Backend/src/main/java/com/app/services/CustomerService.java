@@ -11,4 +11,5 @@ public interface CustomerService {
 	Customer validate(String userid,String pwd);
 	boolean verifyUserId(String userid);
 	void updateProfile(Customer cust);
+	void deleteCustomer(int id);
 }

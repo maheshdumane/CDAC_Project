@@ -3,7 +3,7 @@ const uservalidation=(values)=>{
     if(!values.name){
         errors.name="Name is required"
     }
-    if(!/^[a-zA-Z]{0,30}$/.test(values.name)){
+    if(!/^[a-zA-Z ]{0,30}$/.test(values.name)){
         errors.name="Name should contain alphabets only"
     }
     if(!values.city){

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.daos.CustomerDao;
 import com.app.pojos.Customer;
+import com.app.pojos.Seller;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -59,6 +60,12 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		cust.setPwd(this.passwordEncoder.encode(cust.getPwd()));
 		dao.save(cust);	
+	}
+	@Override
+	public void deleteCustomer(int id) {
+		// TODO Auto-generated method stub
+		Customer customer=dao.getById(id);
+		dao.delete(customer);
 	}
 	
 }

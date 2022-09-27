@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import loginvalidation from "../loginvalidation"
 
 function SellerLogin(){
-    const  validcaptcha=false;
+    
     const dispatch=useDispatch()
     const [user,setUser]=useState({
         "userid":"",
@@ -33,15 +33,11 @@ function SellerLogin(){
     function validcap(){
         var stg1 = captcha.capt;
         var stg2 = captcha.textinput;
-        if(stg1==stg2){
-          validcaptcha=true;
-          return true;
-        }else{
+        if(stg1!==stg2){
           alert("Please enter a valid captcha");
-          validcaptcha=false;
-          return false;
-        }
+          History.push("./slogin");
        }
+    }
 
         function cap(){
 
@@ -66,7 +62,7 @@ function SellerLogin(){
 
     useEffect(()=>{
         console.log(errors)
-        if(Object.keys(errors).length===0 && submitted && validcaptcha){
+        if(Object.keys(errors).length===0 && submitted){
             console.log(user)
             axios.post("http://localhost:9090/api/sellers/validate",user)
             .then(resp=>{

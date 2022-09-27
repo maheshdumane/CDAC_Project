@@ -89,7 +89,7 @@ function CustomerProfile(){
                     <div className="form-group form-row">
                         <label className="col-sm-4 form-control-label">Password</label>
                         <div className="col-sm-8">
-                            <input type="password" name="pwd" value={user.pwd} onChange={handleInput} className="form-control" />                        
+                            <input type="password" name="pwd"  onChange={handleInput} className="form-control" />                        
                         </div>
                     </div>                    
                     <button className="btn btn-primary float-right">Update Profile</button>

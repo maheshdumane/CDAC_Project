@@ -38,7 +38,7 @@ function AllSellers(){
                         <th>City</th>
                         <th>Phone</th>
                         <th>User Id</th>
-                        <th>Password</th>
+                        
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -50,7 +50,7 @@ function AllSellers(){
                         <td>{x.city}</td>
                         <td>{x.phone}</td>
                         <td>{x.userid}</td>
-                        <td>{x.pwd}</td>
+                        
                         <td><button onClick={(e)=>deleteSeller(x.id)} className="btn btn-danger btn-sm">Delete</button></td>
                     </tr>
                 ))}

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import loginvalidation from "../loginvalidation"
 
 function CustomerLogin(){
-    const  validcaptcha=false;
+    
 
     const dispatch=useDispatch()
 
@@ -37,15 +37,11 @@ function CustomerLogin(){
     function validcap(){
                     var stg1 = captcha.capt;
                     var stg2 = captcha.textinput;
-                    if(stg1==stg2){
-                      validcaptcha=true;
-                      return true;
-                    }else{
+                    if(stg1!==stg2){
                       alert("Please enter a valid captcha");
-                      validcaptcha=false;
-                      return false;
-                    }
+                      History.push("./clogin");
                    }
+                }
 
     function cap(){
         
@@ -70,7 +66,7 @@ function CustomerLogin(){
 
     useEffect(()=>{
         console.log(errors)
-        if(Object.keys(errors).length===0 && submitted && validcaptcha){
+        if(Object.keys(errors).length===0 && submitted ){
             console.log(user)
             axios.post("http://localhost:9090/api/customers/validate",user)
             .then(resp=>{

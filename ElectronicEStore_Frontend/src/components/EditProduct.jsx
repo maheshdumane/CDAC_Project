@@ -6,6 +6,7 @@ import productvalidation from "./productvalidation";
 function EditProduct(){
     console.log("Edit product page")
     const sellerid=sessionStorage.getItem("id")
+    
     const {prodid}=useParams()
     const [product,setProduct]=useState({
         "prodid":prodid,
@@ -14,6 +15,7 @@ function EditProduct(){
         "subcat":"",
         "price":"",
         "brand":"",
+        "photo":"",
         "sellerId":sellerid
     })
     
@@ -60,11 +62,11 @@ function EditProduct(){
         <div className="container-fluid">
                     <div className="row">
                         <div className="col-sm-3">
-                            <img width="300" src={"http://127.0.0.1:8887/"+product.photo} />
+                            <img width="300" src={'../pictures/'+product.photo} />
                         </div>
                         <div className="col-sm-9">
                             <h4 className="text-center p-2">
-                                Edit Product Form (Product ID : )
+                                Edit Product Form (Product ID :{product.prodid} )
                             </h4>
                             <form onSubmit={handleSubmit}>
                             <div className="form-group form-row">
@@ -105,7 +107,7 @@ function EditProduct(){
                                 </div>                                
                             </div>                           
                             
-                            <button className="btn btn-primary float-right">Update Product</button>
+                            <button className="btn btn-secondary float-right">Update Product</button>
                             </form>
                         </div>
                     </div>
