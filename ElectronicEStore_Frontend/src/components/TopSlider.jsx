@@ -1,12 +1,14 @@
 import "slick-carousel/slick/slick.css";  
 import "slick-carousel/slick/slick-theme.css";  
 import Slider from "react-slick";
+import { useHistory } from "react-router-dom";
 
 function TopSlider(){
+    const history=useHistory()
     const settings = {
         //dots: true,
         infinite: true,
-        speed: 30000,
+        speed: 40000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -14,17 +16,27 @@ function TopSlider(){
         cssEase: "linear"
       };
 
+function acslider(){
+  history.push("./cats?cat=AC");
+}
+function soundslider(){
+  history.push("cats?cat=Audio");
+}
+function tvslider(){
+  history.push("./cats?cat=Televisions");
+}
+
     return (
         <>
             <Slider {...settings}>   
               <div className="wdt">  
-              <img  className="img" alt="pic1" src= {'assets/iphone.jfif'}/>  
+              <img  className="img" alt="pic1" src= {'assets/acslider.jpg'} onClick={acslider}/>  
               </div >  
               <div className="wdt">  
-              <img  className="img" alt="pic1" src= {'assets/sony1.jpg'}/>  
+              <img  className="img" alt="pic1" src= {'assets/soundslider.jpg'} onClick={soundslider}/>  
               </div> 
               <div className="wdt">  
-              <img  className="img" alt="pic1" src= {'assets/hp.jpg'}/>  
+              <img  className="img" alt="pic1" src= {'assets/tvslider.jpg'} onClick={tvslider}/>  
               </div> 
             </Slider>
         </>        
