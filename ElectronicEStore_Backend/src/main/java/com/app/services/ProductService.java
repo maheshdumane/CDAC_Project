@@ -19,4 +19,5 @@ public interface ProductService {
 	Page<Product> allProductsPaginated(int page,int pagesize);
 	void deleteBySellerId(int id);
 	void updateStatus(String status,int id);
+	void updateStatusBySeller(String status,int id);
 }

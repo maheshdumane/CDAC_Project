@@ -33,9 +33,17 @@ public class Seller {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_timestamp")
 	private Date createdTimestamp= new Date();
+	@Column(name = "status")
+	private String status="active";
 		
 	public int getId() {
 		return id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -78,16 +86,10 @@ public class Seller {
 	}
 	
 	
-	/*public List<Product> getProductList() {
-		return productList;
-	}
-	public void setProductList(List<Product> productList) {
-		this.productList = productList;
-	}*/
 	@Override
 	public String toString() {
 		return "Seller [id=" + id + ", name=" + name + ", city=" + city + ", userid=" + userid + ", pwd=" + pwd
-				+ ", phone=" + phone + ", createdTimestamp=" + createdTimestamp + "]";
+				+ ", phone=" + phone + ", createdTimestamp=" + createdTimestamp + ", status=" + status + "]";
 	}
 	
 	

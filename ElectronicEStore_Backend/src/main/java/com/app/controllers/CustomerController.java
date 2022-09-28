@@ -21,8 +21,9 @@ import com.app.dto.ErrorResponse;
 import com.app.dto.LoginDTO;
 import com.app.dto.Response;
 import com.app.pojos.Customer;
-
+import com.app.pojos.EmailDetails;
 import com.app.services.CustomerService;
+import com.app.services.EmailService;
 import com.app.services.OrderService;
 import com.app.services.OrderdetailService;
 
@@ -38,15 +39,21 @@ public class CustomerController {
 	OrderService orderService;
 	@Autowired 
 	OrderdetailService orderDetailService;
+	@Autowired private EmailService emailService;
 	
 	@PostMapping
 	@ApiOperation(value="Save a customer details",response = Customer.class)
 	
 	public ResponseEntity<?> save(@Valid @RequestBody Customer cust) {
-		try {	
+		try {
+			
+			String details="Congratulations your Registration is successful.";
+			EmailDetails email=new EmailDetails(cust.getUserid(), details, "Electronic E Store registration");
+			emailService.sendSimpleMail(email);
 			return new ResponseEntity<>(customerService.registerCustomer(cust), HttpStatus.CREATED);
 //			customerService.registerCustomer(cust);
 //			return Response.success(cust);
+			
 		}catch (RuntimeException e) {
 			System.out.println("err in add " + e);
 			return new ResponseEntity<>(new ErrorResponse("Adding Customer failed!!!!!", e.getMessage()),

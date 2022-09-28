@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.ErrorResponse;
 import com.app.dto.LoginDTO;
 import com.app.dto.Response;
+import com.app.pojos.EmailDetails;
 import com.app.pojos.Seller;
+import com.app.services.EmailService;
 import com.app.services.ProductService;
 import com.app.services.SellerService;
 
@@ -32,11 +34,15 @@ public class SellerController {
 	private SellerService sellerService;
 	@Autowired 
 	private ProductService productService;
-	
+	@Autowired
+	private EmailService emailService;
 	@PostMapping
 	public ResponseEntity<?> save(@Valid @RequestBody Seller seller) {		
 		
 		try {	
+			String details="Congratulations your Registration is successful.";
+			EmailDetails email=new EmailDetails(seller.getUserid(), details, "Electronic E Store registration");
+			emailService.sendSimpleMail(email);
 			return new ResponseEntity<>(sellerService.registerSeller(seller), HttpStatus.CREATED);
 
 		}catch (RuntimeException e) {
@@ -62,8 +68,10 @@ public class SellerController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> deleteSeller(@PathVariable("id") int id) {
-		productService.deleteBySellerId(id);
-		sellerService.deleteSeller(id);
+		//productService.deleteBySellerId(id);
+		//sellerService.deleteSeller(id);
+		sellerService.updateSellerStatus("deleted", id);
+		productService.updateStatusBySeller("deleted", id);
 		return Response.status(HttpStatus.OK);
 	}
 	

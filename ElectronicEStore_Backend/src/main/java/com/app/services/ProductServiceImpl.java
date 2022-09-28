@@ -92,4 +92,11 @@ public class ProductServiceImpl implements ProductService{
 		dao.updateStatus(status, id);
 		
 	}
+
+	@Override
+	public void updateStatusBySeller(String status, int id) {
+		// TODO Auto-generated method stub
+		dao.updateStatusBySeller(status, id);
+		
+	}
 }

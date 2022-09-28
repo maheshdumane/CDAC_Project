@@ -50,4 +50,11 @@ public class SellerServiceImpl implements SellerService {
 		dao.delete(seller);
 	}
 
+	@Override
+	public void updateSellerStatus(String status, int id) {
+		// TODO Auto-generated method stub
+		dao.updateSellerStatus(status, id);
+		
+	}
+
 }
