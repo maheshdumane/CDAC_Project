@@ -27,7 +27,7 @@ function Orders(){
         <div className="container-fluid">
             <div className="row">
                 <div className="col-sm-7">
-                <h4 className="p-2 text-center text-white">My Purchased Orders</h4>
+                <h4 className="p-2 text-center text-white">All Orders</h4>
                 <table className="table table-bordered table-sm table-dark table-hover table-striped">
                     <thead>
                         <tr>

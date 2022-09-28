@@ -47,7 +47,7 @@ function RegCustomer()
             })
             .catch(error=>{
                 console.log("Error",error)
-                alert("This Email is already Registered. Try using another Email id")
+                alert("Registration Failed.")
             })            
         }
     },[errors])

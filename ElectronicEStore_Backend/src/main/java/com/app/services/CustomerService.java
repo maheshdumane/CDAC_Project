@@ -12,4 +12,5 @@ public interface CustomerService {
 	boolean verifyUserId(String userid);
 	void updateProfile(Customer cust);
 	void deleteCustomer(int id);
+	void updateCustomerStatus(String status,int id);
 }

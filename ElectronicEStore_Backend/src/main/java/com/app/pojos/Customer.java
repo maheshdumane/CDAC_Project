@@ -34,8 +34,16 @@ public class Customer {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_timestamp")
 	private Date createdTimestamp=new Date();
+	@Column(name = "status")
+	private String status="active";
 	
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -87,7 +95,8 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", city=" + city + ", userid=" + userid + ", pwd=" + pwd
-				+ ", phone=" + phone + ", createdTimestamp=" + createdTimestamp + "]";
+				+ ", phone=" + phone + ", gender=" + gender + ", createdTimestamp=" + createdTimestamp + ", status="
+				+ status + "]";
 	}
 	
 	

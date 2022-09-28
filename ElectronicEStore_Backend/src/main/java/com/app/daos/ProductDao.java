@@ -18,7 +18,7 @@ import com.app.pojos.Seller;
 @Repository
 public interface ProductDao extends JpaRepository<Product, Integer> {
 	@Modifying
-	@Query(value = "select * from product where sellerId=? and status='available' group by pname order by prodid", nativeQuery = true)
+	@Query(value = "select * from product where sellerId=? and status='available' order by prodid", nativeQuery = true)
 	List<Product> findBySellerId(int sellerId);
 	
 	List<Product> findBySeller(Seller sellerId,Sort sort);

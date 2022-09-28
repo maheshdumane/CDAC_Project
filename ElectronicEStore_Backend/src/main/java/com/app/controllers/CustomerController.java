@@ -94,9 +94,10 @@ public class CustomerController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable("id") int id) {
-		orderDetailService.deleteByCustomerId(id);
-		orderService.deleteByCustomerId(id);
-		customerService.deleteCustomer(id);
+		//orderDetailService.deleteByCustomerId(id);
+		//orderService.deleteByCustomerId(id);
+		//customerService.deleteCustomer(id);
+		customerService.updateCustomerStatus("deleted", id);
 		return Response.status(HttpStatus.OK);
 	}
 
