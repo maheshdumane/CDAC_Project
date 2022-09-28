@@ -123,7 +123,7 @@ function ViewCart(){
                 <div className="form-group form-row">
                     <label className="col-sm-4 form-control-label">Zip</label>
                     <div className="col-sm-8">
-                        <input type="text" name="zip" required value={address.zip} onChange={handleAddressInput} className="form-control" />                        
+                        <input type="text" name="zip" maxLength="8" required value={address.zip} onChange={handleAddressInput} className="form-control" />                        
                     </div>                        
                 </div>
                 <div className="form-group form-row">
@@ -137,13 +137,13 @@ function ViewCart(){
                 <div className="form-group form-row">
                     <label className="col-sm-4 form-control-label">Card No</label>
                     <div className="col-sm-8">
-                        <input type="text" name="cardno" value={payment.cardno} onChange={handlePaymentInput} className="form-control" maxLength="16" />                        
+                        <input type="text" name="cardno" required value={payment.cardno} onChange={handlePaymentInput} className="form-control" maxLength="16" />                        
                     </div>                        
                 </div>
                 <div className="form-group form-row">
                     <label className="col-sm-4 form-control-label">Name on Card</label>
                     <div className="col-sm-8">
-                        <input type="text" name="nameoncard" value={payment.nameoncard} onChange={handlePaymentInput} className="form-control" />                        
+                        <input type="text" name="nameoncard" required value={payment.nameoncard} onChange={handlePaymentInput} className="form-control" />                        
                     </div>                        
                 </div>
                 <div className="form-group form-row">
@@ -155,7 +155,7 @@ function ViewCart(){
                 <div className="form-group form-row">
                     <label className="col-sm-4 form-control-label">CVV</label>
                     <div className="col-sm-8">
-                        <input type="text" maxLength="3" value={payment.cvv} onChange={handlePaymentInput} className="form-control" />                        
+                        <input type="text" maxLength="3" name="cvv" value={payment.cvv} onChange={handlePaymentInput} className="form-control" />                        
                     </div>                        
                 </div>
                 <div className="form-group form-row">
