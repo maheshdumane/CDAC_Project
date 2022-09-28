@@ -11,4 +11,6 @@ public interface OrderService {
 	List<Order> getAllOrders();
 	List<Order> getCustomerOrders(Customer customer);
 	Order findById(int id);
+	void deleteByCustomerId(int id);
+	
 }

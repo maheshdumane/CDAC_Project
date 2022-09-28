@@ -62,7 +62,7 @@ public class ProductController {
 	public ResponseEntity<?> findAllProducts(Optional<Integer> sellerid,Optional<String> cat) {
 		List<ProductResponseDTO> result = new ArrayList<ProductResponseDTO>();
 		if(sellerid.isPresent()) {
-			System.out.println(sellerid);
+			
 			for(Product p : productService.findProducts(sellerid.get())) {
 				result.add(ProductResponseDTO.fromEntity(p));
 			}
@@ -74,6 +74,7 @@ public class ProductController {
 		}
 		else {
 			for(Product p : productService.allProducts()) {
+				
 				result.add(ProductResponseDTO.fromEntity(p));
 			}
 		}
@@ -83,6 +84,7 @@ public class ProductController {
 	
 	@GetMapping("/paginated")
 	public ResponseEntity<?> paginatedProducts(int page,int pagesize) {
+		
 		List<ProductResponseDTO> result = new ArrayList<ProductResponseDTO>();
 		Page<Product> data=productService.allProductsPaginated(page, pagesize);
 		data.forEach(item-> {
@@ -99,7 +101,7 @@ public class ProductController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable("id") int id) {
-		productService.deleteProduct(id);
+		productService.updateStatus("deleted", id);
 		return Response.status(HttpStatus.OK);
 	}
 }

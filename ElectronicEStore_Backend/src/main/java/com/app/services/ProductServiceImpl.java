@@ -32,7 +32,8 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> findProducts(int sellerId) {
 		// TODO Auto-generated method stub
-		return dao.findBySeller(sellerService.findById(sellerId),Sort.by(Sort.Direction.DESC,"prodid"));
+		//return dao.findBySeller(sellerService.findById(sellerId),Sort.by(Sort.Direction.DESC,"prodid"));
+		return dao.findBySellerId(sellerId);
 	}
 
 	@Override
@@ -51,8 +52,10 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<Product> allProducts() {
+		
 		// TODO Auto-generated method stub
 		return dao.findAll(Sort.by(Sort.Direction.DESC,"prodid"));
+		//return dao.findAllProduct();
 	}
 
 	@Override
@@ -64,13 +67,29 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> categoryProducts(String pcat) {
 		// TODO Auto-generated method stub
-		return dao.findByPcat(pcat,Sort.by(Sort.Direction.DESC,"prodid"));
+		//return dao.findByPcat(pcat,Sort.by(Sort.Direction.DESC,"prodid"));
+		return dao.findByCategory(pcat);
 	}
 
 	@Override
 	public Page<Product> allProductsPaginated(int page,int pagesize) {
-		Page<Product> prods=dao.findAll(PageRequest.of(page, pagesize,Sort.by(Direction.DESC, "prodid")));
-		System.err.println(prods.getSize());
+		
+		Page<Product> prods=dao.findAll(PageRequest.of(page, pagesize));
+		
 		return prods;
+	}
+
+	@Override
+	public void deleteBySellerId(int id) {
+		// TODO Auto-generated method stub
+		dao.deleteBySeller(id);
+		
+	}
+
+	@Override
+	public void updateStatus(String status, int id) {
+		// TODO Auto-generated method stub
+		dao.updateStatus(status, id);
+		
 	}
 }

@@ -20,6 +20,16 @@ public class OrderDetails {
 	@ManyToOne
 	@JoinColumn(name="orderId")
 	private Order order;
+	@ManyToOne
+	@JoinColumn(name="customerId")
+	private Customer customer;
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public int getId() {
 		return id;
 	}

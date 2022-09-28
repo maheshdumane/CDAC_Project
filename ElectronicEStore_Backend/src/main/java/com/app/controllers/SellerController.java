@@ -20,6 +20,7 @@ import com.app.dto.ErrorResponse;
 import com.app.dto.LoginDTO;
 import com.app.dto.Response;
 import com.app.pojos.Seller;
+import com.app.services.ProductService;
 import com.app.services.SellerService;
 
 @CrossOrigin
@@ -29,6 +30,8 @@ public class SellerController {
 
 	@Autowired 
 	private SellerService sellerService;
+	@Autowired 
+	private ProductService productService;
 	
 	@PostMapping
 	public ResponseEntity<?> save(@Valid @RequestBody Seller seller) {		
@@ -59,6 +62,7 @@ public class SellerController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> deleteSeller(@PathVariable("id") int id) {
+		productService.deleteBySellerId(id);
 		sellerService.deleteSeller(id);
 		return Response.status(HttpStatus.OK);
 	}

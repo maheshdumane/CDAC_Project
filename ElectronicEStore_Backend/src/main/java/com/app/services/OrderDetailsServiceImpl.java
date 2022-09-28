@@ -31,4 +31,10 @@ public class OrderDetailsServiceImpl implements OrderdetailService {
 		return dao.findByOrder(order);
 	}
 
+	@Override
+	public void deleteByCustomerId(int id) {
+		// TODO Auto-generated method stub
+		dao.deleteByCustomerId(id);
+	}
+
 }

@@ -31,7 +31,15 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name="sellerId")
 	private Seller seller;
+	@Column(name = "status")
+	private String status="available";
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getBrand() {
 		return brand;
 	}

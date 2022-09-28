@@ -23,6 +23,8 @@ import com.app.dto.Response;
 import com.app.pojos.Customer;
 
 import com.app.services.CustomerService;
+import com.app.services.OrderService;
+import com.app.services.OrderdetailService;
 
 import io.swagger.annotations.ApiOperation;
 @CrossOrigin
@@ -32,6 +34,10 @@ public class CustomerController {
 	
 	@Autowired 
 	CustomerService customerService;
+	@Autowired 
+	OrderService orderService;
+	@Autowired 
+	OrderdetailService orderDetailService;
 	
 	@PostMapping
 	@ApiOperation(value="Save a customer details",response = Customer.class)
@@ -81,6 +87,8 @@ public class CustomerController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable("id") int id) {
+		orderDetailService.deleteByCustomerId(id);
+		orderService.deleteByCustomerId(id);
 		customerService.deleteCustomer(id);
 		return Response.status(HttpStatus.OK);
 	}

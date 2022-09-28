@@ -41,20 +41,20 @@ function AllProduct(){
                 console.log(resp.data.data.total)
                 setProducts(resp.data.data.plist)
                 setTotalPage(Math.ceil(resp.data.data.total/pagesize))
-                console.log(products)
+                
             })
     }
 
     useEffect(()=>{
-        console.log("I am here cat",location.search)
+        
         let pcat=queryString.parse(location.search)
-        console.log(pcat.cat)
+        
         if(pcat.cat!==undefined){
             axios.get("http://localhost:9090/api/products?cat="+pcat.cat)
             .then(resp=>{
                 console.log(resp.data)
                 setProducts(resp.data.data)
-                console.log(products)
+                
             })
         }
         else {

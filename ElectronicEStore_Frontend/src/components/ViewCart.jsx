@@ -11,14 +11,14 @@ function ViewCart(){
     const history=useHistory()
     const [address,setAddress]=useState({
         "city":"",
-        "state":"Maharashtra",
-        "zip":"411038",
+        "state":"",
+        "zip":"",
         "country":"India"
     })
     const [payment,setPayment]=useState({
-        "cardno":"1212444433336666",
-        "nameoncard":"Test Name",
-        "cvv":"123",
+        "cardno":"",
+        "nameoncard":"",
+        "cvv":"",
         "amount":state.cart.reduce((a,b)=> (a+b.price),0)       
     })
     const deleteItem=(item)=>{
@@ -149,7 +149,7 @@ function ViewCart(){
                 <div className="form-group form-row">
                     <label className="col-sm-4 form-control-label">Expiry Date</label>
                     <div className="col-sm-8">
-                        <input type="month" required className="form-control" />                        
+                        <input type="month" required className="form-control" min="2022-09" />                        
                     </div>                        
                 </div>
                 <div className="form-group form-row">

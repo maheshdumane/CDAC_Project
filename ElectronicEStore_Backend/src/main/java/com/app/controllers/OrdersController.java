@@ -38,7 +38,7 @@ import com.app.services.ProductService;
 @RestController
 @RequestMapping("/api/orders")
 public class OrdersController {
-
+	
 	@Autowired OrderService orderService;
 	@Autowired CustomerService customerService;
 	@Autowired AddressService addressService;
@@ -48,6 +48,16 @@ public class OrdersController {
 	
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody PlaceOrderDTO dto) {	
+		String status="orderd";
+		List<Integer> p = new ArrayList<Integer>();
+		List<CartDTO> c=dto.getCart();
+		for(CartDTO a:c){
+			p.add(a.getProdid());
+		}
+		for(int i=0;i<p.size();i++) {
+			productService.updateStatus(status, p.get(i));
+		}
+		
 		Address address=addressService.saveAddress(dto.getAddress());
 		dto.getPayment().setPaymentdate(new Date());
 		Payment payment=paymentService.savePayment(dto.getPayment());
@@ -65,6 +75,7 @@ public class OrdersController {
 			od.setQty(cart.getQty());
 			Product product=productService.findProductById(cart.getProdid());
 			od.setProduct(product);
+			od.setCustomer(customer);
 			orderDetailsService.saveOrderDetails(od);
 		}
 		
